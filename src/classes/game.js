@@ -3,13 +3,23 @@ import BoardObject from "./board";
 export default class GameObject {
   constructor() {
     this.board = new BoardObject();
-    this.board.scrambleTiles();
     this.gameState = {
       board: this.board,
     };
   }
 
-  scrambleBoard() {
+  prepareGame() {
     this.board.scrambleTiles();
+    this.board.setMovableTiles();
+    this.gameState = {
+      board: this.board,
+    };
+  }
+
+  refreshMovableTiles() {
+    this.board.setMovableTiles();
+    this.gameState = {
+      board: this.board,
+    };
   }
 }
