@@ -31,6 +31,25 @@ export default class BoardObject {
     this.boardState = boardTiles;
   }
 
+  immediateMove(tileToMove) {
+    const emptyTile = this.boardState.find((tile) => tile.number === 0);
+    const emptyPosition = emptyTile.getPosition();
+    emptyTile.setPosition(tileToMove.position);
+    tileToMove.setPosition(emptyPosition);
+
+    // const emptyTile = this.boardState.find((tile) => tile.number === 0);
+    // const oldPosition = tileToMove.position;
+
+    // this.boardState = this.boardState.map((tile) => {
+    //   if (tile.position === oldPosition) {
+    //     console.log(tile);
+    //     tile.setPosition(emptyTile.position);
+    //     emptyTile.setPosition(oldPosition);
+    //   }
+    // });
+    // this.setMovableTiles();
+  }
+
   detectMovableTiles() {
     const boardTiles = [...this.boardState];
     const emptyTile = boardTiles.find((tile) => tile.empty);
@@ -147,5 +166,11 @@ export default class BoardObject {
         });
       });
     });
+  }
+
+  clone() {
+    let out = new BoardObject();
+    out.boardState = this.boardState;
+    return out;
   }
 }

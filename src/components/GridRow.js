@@ -6,11 +6,18 @@ const gridRowStyle = {
   flexDirection: "row",
 };
 
-const GridRow = ({ gridArrayRow }) => {
+const GridRow = ({ mutableGame, setGameState, boardState, gridArrayRow }) => {
   return (
     <div style={gridRowStyle}>
       {gridArrayRow.map((tile) => {
-        return <GridSquare tile={tile} />;
+        return (
+          <GridSquare
+            tile={tile}
+            boardState={boardState}
+            mutableGame={mutableGame}
+            setGameState={setGameState}
+          />
+        );
       })}
     </div>
   );

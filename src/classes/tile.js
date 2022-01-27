@@ -21,15 +21,11 @@ export default class TileObject {
   constructor(number, position) {
     this.number = number;
     this.position = position;
-    this.coordinates = positionDictionary[position];
+    this.coordinates = positionDictionary[this.position];
     this.immediateMovable = false;
     this.rowMovable = false;
     this.columnMovable = false;
     this.empty = number === 0 ? true : false;
-  }
-
-  moveTo(i) {
-    this.position = i;
   }
 
   getPosition() {
@@ -50,6 +46,7 @@ export default class TileObject {
 
   setPosition(i) {
     this.position = i;
+    this.coordinates = positionDictionary[i];
   }
 
   setImmediateMovable(tf) {
@@ -70,6 +67,7 @@ export default class TileObject {
 
   clone() {
     const out = new TileObject(this.number, this.position);
+    out.coordinates = this.coordiinates;
     out.immediateMovable = this.immediateMovable;
     out.rowMovable = this.rowMovable;
     out.columnMovable = this.columnMovable;

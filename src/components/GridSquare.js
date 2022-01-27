@@ -32,12 +32,22 @@ const gridSquareDistantStyle = {
   backgroundColor: "pink",
 };
 
-const GridSquare = ({ tile }) => {
+const GridSquare = ({ tile, mutableGame, setGameState }) => {
+  const immediateMove = () => {
+    console.log(mutableGame.board.boardState);
+    mutableGame.board.immediateMove(tile);
+    setGameState(mutableGame.board.boardState);
+    console.log(mutableGame.board.boardState);
+  };
+
   if (tile.number === 0) {
     return <div style={gridSquareStyle}></div>;
   } else if (tile.immediateMovable || tile.columnMovable || tile.rowMovable) {
     return (
       <button
+        onClick={
+          tile.immediateMovable ? immediateMove : () => console.log("Todo")
+        }
         style={
           tile.immediateMovable
             ? gridSquareImmediateStyle

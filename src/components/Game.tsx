@@ -2,15 +2,20 @@ import React, { useEffect, useState } from "react";
 import GameObject from "../classes/game";
 import Grid from "./Grid";
 
-const Game = () => {
-  const newGame = new GameObject();
-  const [gameState, setGameState] = useState(newGame.gameState);
+export type GameData = {};
+
+// Object outside of component to make it mutatable
+const newGame = new GameObject();
+newGame.prepareGame();
+
+export const Game: React.FC = () => {
+  const [gameState, setGameState] = useState(newGame.board.boardState);
 
   useEffect(() => {
-    newGame.prepareGame();
-    setGameState(newGame.gameState);
-  }, []);
+    console.log("MOVE!");
+  }, [gameState]);
 
+  console.log(gameState);
   if (gameState) {
     return (
       <div>
@@ -25,5 +30,3 @@ const Game = () => {
     return <button>CLICK TO BEGIN GAME</button>;
   }
 };
-
-export default Game;
