@@ -53,10 +53,6 @@ export type GridSquareData = {
 const GridSquare = ({ tile, mutableGame, setGameState }: GridSquareData) => {
   const [intendToMove, setIntendToMove] = useState(false);
 
-  const toggleHover = () => {
-    setIntendToMove(!intendToMove);
-  };
-
   const immediateMove = () => {
     // Function for moving tiles that are immediately adjacent to the empty tile
     mutableGame.board.immediateMove(tile);
@@ -69,6 +65,12 @@ const GridSquare = ({ tile, mutableGame, setGameState }: GridSquareData) => {
     setGameState([...mutableGame.board.boardState]);
   };
 
+  const hoverHighlight = (tile: any, tf: boolean) => {
+    // Function for highlighting tiles that would move upon hover
+    // mutableGame.board.complexIntendToMove(tile, tf);
+    // setGameState([...mutableGame.board.boardState]);
+  };
+
   if (tile.number === 0) {
     return <div style={gridSquareStyle}></div>;
   } else if (tile.immediateMovable || tile.columnMovable || tile.rowMovable) {
@@ -76,8 +78,8 @@ const GridSquare = ({ tile, mutableGame, setGameState }: GridSquareData) => {
       <button
         onClick={tile.immediateMovable ? immediateMove : complexMove}
         style={intendToMove ? gridSquareHoverStyle : gridSquareMovableStyle}
-        onMouseEnter={toggleHover}
-        onMouseLeave={toggleHover}
+        onMouseEnter={() => setIntendToMove(true)}
+        onMouseLeave={() => setIntendToMove(false)}
       >
         {tile.number}
       </button>

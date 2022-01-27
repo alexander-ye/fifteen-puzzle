@@ -57,7 +57,6 @@ export default class BoardObject {
         const newEmptyPosition = Math.max(
           ...tilesToMove.map((t) => t.position)
         );
-
         tilesToMove.forEach((t) => t.setPosition(t.position - 1));
         emptyTile.setPosition(newEmptyPosition);
       } else {
@@ -221,5 +220,52 @@ export default class BoardObject {
         tile.setColumnMovable(false);
       }
     });
+  }
+
+  complexIntendToMove(tileHovered, tf) {
+    const emptyTile = this.boardState.find((tile) => tile.number === 0);
+    const emptyRowNumber = emptyTile.coordinates[0];
+    const emptyColNumber = emptyTile.coordinates[1];
+    const rowNumber = tileHovered.coordinates[0];
+    const colNumber = tileHovered.coordinates[1];
+
+    if (rowNumber === emptyRowNumber) {
+      if (colNumber > emptyColNumber) {
+        const tilesToMove = this.boardState.filter(
+          (tile) =>
+            tile.columnMovable &&
+            tile.coordinates[1] > emptyColNumber &&
+            tile.coordinates[1] <= colNumber
+        );
+        tilesToMove.forEach((t) => t.setIntendToMove(tf));
+      } else {
+        const tilesToMove = this.boardState.filter(
+          (tile) =>
+            tile.columnMovable &&
+            tile.coordinates[1] < emptyColNumber &&
+            tile.coordinates[1] >= colNumber
+        );
+        tilesToMove.forEach((t) => t.setIntendToMove(tf));
+      }
+    } else {
+      if (rowNumber > emptyRowNumber) {
+        const tilesToMove = this.boardState.filter(
+          (tile) =>
+            tile.rowMovable &&
+            tile.coordinates[0] > emptyRowNumber &&
+            tile.coordinates[0] <= rowNumber
+        );
+        tilesToMove.forEach((t) => t.setIntendToMove(tf));
+      } else {
+        const tilesToMove = this.boardState.filter(
+          (tile) =>
+            tile.rowMovable &&
+            tile.coordinates[0] < emptyRowNumber &&
+            tile.coordinates[0] >= rowNumber
+        );
+        tilesToMove.forEach((t) => t.setIntendToMove(tf));
+      }
+    }
+    this.setMovableTiles();
   }
 }

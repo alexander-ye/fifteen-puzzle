@@ -26,6 +26,7 @@ export default class TileObject {
     this.rowMovable = false;
     this.columnMovable = false;
     this.empty = number === 0 ? true : false;
+    this.intendToMove = false;
   }
 
   getPosition() {
@@ -44,6 +45,10 @@ export default class TileObject {
     return this.columnMovable;
   }
 
+  getIntendToMove() {
+    return this.intendToMove;
+  }
+
   setPosition(i) {
     this.position = i;
     this.coordinates = positionDictionary[i];
@@ -59,5 +64,9 @@ export default class TileObject {
 
   setColumnMovable(tf) {
     this.columnMovable = tf;
+  }
+
+  setIntendToMove(tf) {
+    this.intendToMove(tf);
   }
 }
