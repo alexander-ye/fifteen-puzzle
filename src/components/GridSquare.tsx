@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 
 const gridSquareStyle: React.CSSProperties = {
   display: "flex",
@@ -8,13 +8,13 @@ const gridSquareStyle: React.CSSProperties = {
   width: "75px",
   height: "75px",
   boxShadow: "1px 1px 5px gray",
-  backgroundColor: "#9d8dcc",
+  backgroundColor: "#98c2d0",
   color: "white",
   fontFamily: "sans-serif",
   fontSize: "18px",
 };
 
-const gridSquareImmediateStyle: React.CSSProperties = {
+const gridSquareHoverStyle: React.CSSProperties = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -23,13 +23,13 @@ const gridSquareImmediateStyle: React.CSSProperties = {
   height: "75px",
   boxShadow: "1px 1px 5px gray",
   border: "none",
-  backgroundColor: "#8c6ce8",
+  backgroundColor: "#cdeafb",
   color: "white",
   fontFamily: "sans-serif",
   fontSize: "18px",
 };
 
-const gridSquareDistantStyle: React.CSSProperties = {
+const gridSquareMovableStyle: React.CSSProperties = {
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
@@ -38,7 +38,7 @@ const gridSquareDistantStyle: React.CSSProperties = {
   height: "75px",
   border: "none",
   boxShadow: "1px 1px 5px gray",
-  backgroundColor: "#8c6ce8",
+  backgroundColor: "#b0ddf8",
   color: "white",
   fontFamily: "sans-serif",
   fontSize: "18px",
@@ -51,6 +51,12 @@ export type GridSquareData = {
 };
 
 const GridSquare = ({ tile, mutableGame, setGameState }: GridSquareData) => {
+  const [intendToMove, setIntendToMove] = useState(false);
+
+  const toggleHover = () => {
+    setIntendToMove(!intendToMove);
+  };
+
   const immediateMove = () => {
     // Function for moving tiles that are immediately adjacent to the empty tile
     mutableGame.board.immediateMove(tile);
@@ -69,11 +75,9 @@ const GridSquare = ({ tile, mutableGame, setGameState }: GridSquareData) => {
     return (
       <button
         onClick={tile.immediateMovable ? immediateMove : complexMove}
-        style={
-          tile.immediateMovable
-            ? gridSquareImmediateStyle
-            : gridSquareDistantStyle
-        }
+        style={intendToMove ? gridSquareHoverStyle : gridSquareMovableStyle}
+        onMouseEnter={toggleHover}
+        onMouseLeave={toggleHover}
       >
         {tile.number}
       </button>
