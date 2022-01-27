@@ -55,12 +55,14 @@ const GridSquare = ({ tile, mutableGame, setGameState }: GridSquareData) => {
 
   const immediateMove = () => {
     // Function for moving tiles that are immediately adjacent to the empty tile
+    setIntendToMove(false);
     mutableGame.board.immediateMove(tile);
     setGameState([...mutableGame.board.boardState]);
   };
 
   const complexMove = () => {
     // Function for moving tiles involving pushing more than one block
+    setIntendToMove(false);
     mutableGame.board.complexMove(tile);
     setGameState([...mutableGame.board.boardState]);
   };
