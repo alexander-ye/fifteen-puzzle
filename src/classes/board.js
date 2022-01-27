@@ -54,7 +54,6 @@ export default class BoardObject {
             tile.coordinates[1] > emptyColNumber &&
             tile.coordinates[1] <= colNumber
         );
-        console.log(tilesToMove.map((t) => t.position));
         const newEmptyPosition = Math.max(
           ...tilesToMove.map((t) => t.position)
         );

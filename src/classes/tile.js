@@ -60,8 +60,4 @@ export default class TileObject {
   setColumnMovable(tf) {
     this.columnMovable = tf;
   }
-
-  calculateSurroundingPositions() {
-    console.log("Todo");
-  }
 }
