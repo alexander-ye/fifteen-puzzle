@@ -20,7 +20,9 @@ const Game = () => {
   if (gameState) {
     return (
       <div>
-        <h1 style={{ fontFamily: "sans-serif" }}>15 puzzle</h1>
+        <h1 style={{ fontFamily: "sans-serif", color: "#124261" }}>
+          15 puzzle
+        </h1>
         <button
           onClick={generateNewGame}
           style={{ padding: "10px", marginBottom: "20px" }}

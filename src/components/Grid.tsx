@@ -11,7 +11,7 @@ const Grid = ({ mutableGame, gameState, setGameState }: GridData) => {
   const board = gameState;
 
   return (
-    <>
+    <div style={{ border: "2px solid black", width: "fit-content" }}>
       <GridRow
         boardState={board}
         mutableGame={mutableGame}
@@ -56,7 +56,7 @@ const Grid = ({ mutableGame, gameState, setGameState }: GridData) => {
           board.find((t: any) => t.position === 15),
         ]}
       />
-    </>
+    </div>
   );
 };
 
