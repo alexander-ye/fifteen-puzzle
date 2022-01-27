@@ -20,8 +20,13 @@ const Game = () => {
   if (gameState) {
     return (
       <div>
-        <h1>15 puzzle</h1>
-        <button onClick={generateNewGame}>New Game</button>
+        <h1 style={{ fontFamily: "sans-serif" }}>15 puzzle</h1>
+        <button
+          onClick={generateNewGame}
+          style={{ padding: "10px", marginBottom: "20px" }}
+        >
+          New Game
+        </button>
         <Grid
           mutableGame={newGame}
           gameState={gameState}

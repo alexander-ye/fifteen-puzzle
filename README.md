@@ -2,7 +2,7 @@
 
 This is the [Fifteen puzzle](https://en.wikipedia.org/wiki/15_puzzle)!
 
-![Fifteen puzzle screenshot](/assets/earlyFifteenPuzzleDemo.jpg)
+![Fifteen puzzle screenshot](/assets/fifteenPuzzleDemo.jpg)
 
 ## Implementation
 
