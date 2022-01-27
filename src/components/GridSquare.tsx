@@ -11,6 +11,7 @@ const gridSquareStyle: React.CSSProperties = {
   backgroundColor: "#9d8dcc",
   color: "white",
   fontFamily: "sans-serif",
+  fontSize: "18px",
 };
 
 const gridSquareImmediateStyle: React.CSSProperties = {
@@ -25,6 +26,7 @@ const gridSquareImmediateStyle: React.CSSProperties = {
   backgroundColor: "#8c6ce8",
   color: "white",
   fontFamily: "sans-serif",
+  fontSize: "18px",
 };
 
 const gridSquareDistantStyle: React.CSSProperties = {
@@ -39,6 +41,7 @@ const gridSquareDistantStyle: React.CSSProperties = {
   backgroundColor: "#8c6ce8",
   color: "white",
   fontFamily: "sans-serif",
+  fontSize: "18px",
 };
 
 export type GridSquareData = {
