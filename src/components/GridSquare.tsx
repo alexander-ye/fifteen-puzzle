@@ -8,6 +8,9 @@ const gridSquareStyle: React.CSSProperties = {
   width: "75px",
   height: "75px",
   boxShadow: "1px 1px 5px gray",
+  backgroundColor: "#9d8dcc",
+  color: "white",
+  fontFamily: "sans-serif",
 };
 
 const gridSquareImmediateStyle: React.CSSProperties = {
@@ -18,7 +21,9 @@ const gridSquareImmediateStyle: React.CSSProperties = {
   width: "75px",
   height: "75px",
   boxShadow: "1px 1px 5px gray",
-  backgroundColor: "green",
+  backgroundColor: "#8c6ce8",
+  color: "white",
+  fontFamily: "sans-serif",
 };
 
 const gridSquareDistantStyle: React.CSSProperties = {
@@ -29,7 +34,9 @@ const gridSquareDistantStyle: React.CSSProperties = {
   width: "75px",
   height: "75px",
   boxShadow: "1px 1px 5px gray",
-  backgroundColor: "pink",
+  backgroundColor: "#8c6ce8",
+  color: "white",
+  fontFamily: "sans-serif",
 };
 
 export type GridSquareData = {
