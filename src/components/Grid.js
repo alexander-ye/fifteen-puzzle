@@ -4,43 +4,51 @@ import GridRow from "./GridRow";
 const Grid = ({ mutableGame, gameState, setGameState }) => {
   const board = gameState;
 
-  const testChange = () => {
-    console.log("Test");
-  };
-  // 4 by 4 grid
   return (
     <>
-      <button
-        onClick={() => {
-          console.log(mutableGame);
-        }}
-      >
-        TEST
-      </button>
-      <button onClick={testChange}>CHANGE SHIT</button>
       <GridRow
         boardState={board}
         mutableGame={mutableGame}
         setGameState={setGameState}
-        gridArrayRow={[board[0], board[1], board[2], board[3]]}
+        gridArrayRow={[
+          board.find((t) => t.position === 0),
+          board.find((t) => t.position === 1),
+          board.find((t) => t.position === 2),
+          board.find((t) => t.position === 3),
+        ]}
       />
       <GridRow
         boardState={board}
         mutableGame={mutableGame}
         setGameState={setGameState}
-        gridArrayRow={[board[4], board[5], board[6], board[7]]}
+        gridArrayRow={[
+          board.find((t) => t.position === 4),
+          board.find((t) => t.position === 5),
+          board.find((t) => t.position === 6),
+          board.find((t) => t.position === 7),
+        ]}
       />
       <GridRow
         boardState={board}
         mutableGame={mutableGame}
         setGameState={setGameState}
-        gridArrayRow={[board[8], board[9], board[10], board[11]]}
+        gridArrayRow={[
+          board.find((t) => t.position === 8),
+          board.find((t) => t.position === 9),
+          board.find((t) => t.position === 10),
+          board.find((t) => t.position === 11),
+        ]}
       />
       <GridRow
         boardState={board}
         mutableGame={mutableGame}
         setGameState={setGameState}
-        gridArrayRow={[board[12], board[13], board[14], board[15]]}
+        gridArrayRow={[
+          board.find((t) => t.position === 12),
+          board.find((t) => t.position === 13),
+          board.find((t) => t.position === 14),
+          board.find((t) => t.position === 15),
+        ]}
       />
     </>
   );

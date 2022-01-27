@@ -36,18 +36,7 @@ export default class BoardObject {
     const emptyPosition = emptyTile.getPosition();
     emptyTile.setPosition(tileToMove.position);
     tileToMove.setPosition(emptyPosition);
-
-    // const emptyTile = this.boardState.find((tile) => tile.number === 0);
-    // const oldPosition = tileToMove.position;
-
-    // this.boardState = this.boardState.map((tile) => {
-    //   if (tile.position === oldPosition) {
-    //     console.log(tile);
-    //     tile.setPosition(emptyTile.position);
-    //     emptyTile.setPosition(oldPosition);
-    //   }
-    // });
-    // this.setMovableTiles();
+    this.setMovableTiles();
   }
 
   detectMovableTiles() {
@@ -149,23 +138,41 @@ export default class BoardObject {
   setMovableTiles() {
     const movableTiles = this.detectMovableTiles();
 
-    this.boardState.map((tile) => {
-      movableTiles.immediateMovableTiles.forEach((i) => {
-        if (tile.position === i) {
-          tile.setImmediateMovable(true);
-        }
-        movableTiles.columnMovableTiles.forEach((i) => {
-          if (tile.position === i) {
-            tile.setColumnMovable(true);
-          }
-        });
-        movableTiles.rowMovableTiles.forEach((i) => {
-          if (tile.position === i) {
-            tile.setRowMovable(true);
-          }
-        });
-      });
+    this.boardState.forEach((tile) => {
+      if (movableTiles.immediateMovableTiles.includes(tile.position)) {
+        tile.setImmediateMovable(true);
+      } else {
+        tile.setImmediateMovable(false);
+      }
+      if (movableTiles.columnMovableTiles.includes(tile.position)) {
+        tile.setColumnMovable(true);
+      } else {
+        tile.setColumnMovable(false);
+      }
+      if (movableTiles.rowMovableTiles.includes(tile.position)) {
+        tile.setRowMovable(true);
+      } else {
+        tile.setRowMovable(false);
+      }
     });
+
+    // this.boardState.map((tile) => {
+    //   movableTiles.immediateMovableTiles.forEach((i) => {
+    //     if (tile.position === i) {
+    //       tile.setImmediateMovable(true);
+    //     }
+    //     movableTiles.columnMovableTiles.forEach((i) => {
+    //       if (tile.position === i) {
+    //         tile.setColumnMovable(true);
+    //       }
+    //     });
+    //     movableTiles.rowMovableTiles.forEach((i) => {
+    //       if (tile.position === i) {
+    //         tile.setRowMovable(true);
+    //       }
+    //     });
+    //   });
+    // });
   }
 
   clone() {

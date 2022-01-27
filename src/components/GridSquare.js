@@ -36,8 +36,7 @@ const GridSquare = ({ tile, mutableGame, setGameState }) => {
   const immediateMove = () => {
     console.log(mutableGame.board.boardState);
     mutableGame.board.immediateMove(tile);
-    setGameState(mutableGame.board.boardState);
-    console.log(mutableGame.board.boardState);
+    setGameState([...mutableGame.board.boardState]);
   };
 
   if (tile.number === 0) {
