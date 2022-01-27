@@ -19,6 +19,7 @@ export const Game: React.FC = () => {
   if (gameState) {
     return (
       <div>
+        <h1>15 puzzle</h1>
         <Grid
           mutableGame={newGame}
           gameState={gameState}

@@ -13,10 +13,4 @@ export default class GameObject {
   refreshMovableTiles() {
     this.board.setMovableTiles();
   }
-
-  clone() {
-    let out = new GameObject();
-    out.board = this.board;
-    return out;
-  }
 }

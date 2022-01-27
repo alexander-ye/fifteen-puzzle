@@ -34,9 +34,14 @@ const gridSquareDistantStyle = {
 
 const GridSquare = ({ tile, mutableGame, setGameState }) => {
   const immediateMove = () => {
-    console.log(mutableGame.board.boardState);
+    // Function for moving tiles that are immediately adjacent to the empty tile
     mutableGame.board.immediateMove(tile);
     setGameState([...mutableGame.board.boardState]);
+  };
+
+  const complexMove = () => {
+    // Function for moving tiles involving pushing more than one block
+    mutableGame.board.complexMove(tile);
   };
 
   if (tile.number === 0) {
@@ -44,9 +49,7 @@ const GridSquare = ({ tile, mutableGame, setGameState }) => {
   } else if (tile.immediateMovable || tile.columnMovable || tile.rowMovable) {
     return (
       <button
-        onClick={
-          tile.immediateMovable ? immediateMove : () => console.log("Todo")
-        }
+        onClick={tile.immediateMovable ? immediateMove : complexMove}
         style={
           tile.immediateMovable
             ? gridSquareImmediateStyle

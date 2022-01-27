@@ -64,14 +64,4 @@ export default class TileObject {
   calculateSurroundingPositions() {
     console.log("Todo");
   }
-
-  clone() {
-    const out = new TileObject(this.number, this.position);
-    out.coordinates = this.coordiinates;
-    out.immediateMovable = this.immediateMovable;
-    out.rowMovable = this.rowMovable;
-    out.columnMovable = this.columnMovable;
-    out.empty = this.empty;
-    return out;
-  }
 }

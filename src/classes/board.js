@@ -31,12 +31,63 @@ export default class BoardObject {
     this.boardState = boardTiles;
   }
 
-  immediateMove(tileToMove) {
+  immediateMove(tilePressed) {
     const emptyTile = this.boardState.find((tile) => tile.number === 0);
     const emptyPosition = emptyTile.getPosition();
-    emptyTile.setPosition(tileToMove.position);
-    tileToMove.setPosition(emptyPosition);
+    emptyTile.setPosition(tilePressed.position);
+    tilePressed.setPosition(emptyPosition);
     this.setMovableTiles();
+  }
+
+  complexMove(tilePressed) {
+    const emptyTile = this.boardState.find((tile) => tile.number === 0);
+    const emptyRowNumber = emptyTile.coordinates[0];
+    const emptyColNumber = emptyTile.coordinates[1];
+    const emptyPosition = emptyTile.getPosition();
+    console.log(emptyTile.coordinates);
+    const rowNumber = tilePressed.coordinates[0];
+    const colNumber = tilePressed.coordinates[1];
+    console.log(tilePressed.coordinates);
+    // console.log(rowNumber);
+    // console.log(colNumber);
+
+    if (rowNumber === emptyRowNumber) {
+      if (colNumber > emptyColNumber) {
+        const tilesToMove = this.boardState.filter(
+          (tile) =>
+            tile.columnMovable &&
+            tile.coordinates[1] > emptyColNumber &&
+            tile.coordinates[1] <= colNumber
+        );
+        console.log(tilesToMove);
+      } else {
+        const tilesToMove = this.boardState.filter(
+          (tile) =>
+            tile.columnMovable &&
+            tile.coordinates[1] < emptyColNumber &&
+            tile.coordinates[1] >= colNumber
+        );
+        console.log(tilesToMove);
+      }
+    } else {
+      if (rowNumber > emptyRowNumber) {
+        const tilesToMove = this.boardState.filter(
+          (tile) =>
+            tile.rowMovable &&
+            tile.coordinates[0] > emptyRowNumber &&
+            tile.coordinates[0] <= rowNumber
+        );
+        console.log(tilesToMove);
+      } else {
+        const tilesToMove = this.boardState.filter(
+          (tile) =>
+            tile.rowMovable &&
+            tile.coordinates[0] < emptyRowNumber &&
+            tile.coordinates[0] >= rowNumber
+        );
+        console.log(tilesToMove);
+      }
+    }
   }
 
   detectMovableTiles() {
@@ -145,39 +196,15 @@ export default class BoardObject {
         tile.setImmediateMovable(false);
       }
       if (movableTiles.columnMovableTiles.includes(tile.position)) {
-        tile.setColumnMovable(true);
-      } else {
-        tile.setColumnMovable(false);
-      }
-      if (movableTiles.rowMovableTiles.includes(tile.position)) {
         tile.setRowMovable(true);
       } else {
         tile.setRowMovable(false);
       }
+      if (movableTiles.rowMovableTiles.includes(tile.position)) {
+        tile.setColumnMovable(true);
+      } else {
+        tile.setColumnMovable(false);
+      }
     });
-
-    // this.boardState.map((tile) => {
-    //   movableTiles.immediateMovableTiles.forEach((i) => {
-    //     if (tile.position === i) {
-    //       tile.setImmediateMovable(true);
-    //     }
-    //     movableTiles.columnMovableTiles.forEach((i) => {
-    //       if (tile.position === i) {
-    //         tile.setColumnMovable(true);
-    //       }
-    //     });
-    //     movableTiles.rowMovableTiles.forEach((i) => {
-    //       if (tile.position === i) {
-    //         tile.setRowMovable(true);
-    //       }
-    //     });
-    //   });
-    // });
-  }
-
-  clone() {
-    let out = new BoardObject();
-    out.boardState = this.boardState;
-    return out;
   }
 }
