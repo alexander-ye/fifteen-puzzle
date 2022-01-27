@@ -43,13 +43,8 @@ export default class BoardObject {
     const emptyTile = this.boardState.find((tile) => tile.number === 0);
     const emptyRowNumber = emptyTile.coordinates[0];
     const emptyColNumber = emptyTile.coordinates[1];
-    const emptyPosition = emptyTile.getPosition();
-    console.log(emptyTile.coordinates);
     const rowNumber = tilePressed.coordinates[0];
     const colNumber = tilePressed.coordinates[1];
-    console.log(tilePressed.coordinates);
-    // console.log(rowNumber);
-    // console.log(colNumber);
 
     if (rowNumber === emptyRowNumber) {
       if (colNumber > emptyColNumber) {
@@ -59,7 +54,13 @@ export default class BoardObject {
             tile.coordinates[1] > emptyColNumber &&
             tile.coordinates[1] <= colNumber
         );
-        console.log(tilesToMove);
+        console.log(tilesToMove.map((t) => t.position));
+        const newEmptyPosition = Math.max(
+          ...tilesToMove.map((t) => t.position)
+        );
+
+        tilesToMove.forEach((t) => t.setPosition(t.position - 1));
+        emptyTile.setPosition(newEmptyPosition);
       } else {
         const tilesToMove = this.boardState.filter(
           (tile) =>
@@ -67,7 +68,12 @@ export default class BoardObject {
             tile.coordinates[1] < emptyColNumber &&
             tile.coordinates[1] >= colNumber
         );
-        console.log(tilesToMove);
+        const newEmptyPosition = Math.min(
+          ...tilesToMove.map((t) => t.position)
+        );
+
+        tilesToMove.forEach((t) => t.setPosition(t.position + 1));
+        emptyTile.setPosition(newEmptyPosition);
       }
     } else {
       if (rowNumber > emptyRowNumber) {
@@ -77,7 +83,12 @@ export default class BoardObject {
             tile.coordinates[0] > emptyRowNumber &&
             tile.coordinates[0] <= rowNumber
         );
-        console.log(tilesToMove);
+        const newEmptyPosition = Math.max(
+          ...tilesToMove.map((t) => t.position)
+        );
+
+        tilesToMove.forEach((t) => t.setPosition(t.position - 4));
+        emptyTile.setPosition(newEmptyPosition);
       } else {
         const tilesToMove = this.boardState.filter(
           (tile) =>
@@ -85,9 +96,14 @@ export default class BoardObject {
             tile.coordinates[0] < emptyRowNumber &&
             tile.coordinates[0] >= rowNumber
         );
-        console.log(tilesToMove);
+        const newEmptyPosition = Math.min(
+          ...tilesToMove.map((t) => t.position)
+        );
+        tilesToMove.forEach((t) => t.setPosition(t.position + 4));
+        emptyTile.setPosition(newEmptyPosition);
       }
     }
+    this.setMovableTiles();
   }
 
   detectMovableTiles() {

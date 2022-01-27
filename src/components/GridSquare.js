@@ -42,6 +42,7 @@ const GridSquare = ({ tile, mutableGame, setGameState }) => {
   const complexMove = () => {
     // Function for moving tiles involving pushing more than one block
     mutableGame.board.complexMove(tile);
+    setGameState([...mutableGame.board.boardState]);
   };
 
   if (tile.number === 0) {
